@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% block title %}Log in{% endblock %}
+{% block content %}
+  <h1>Log in</h1>
+  <form method="post" novalidate>
+    {% csrf_token %}
+    {% for field in form %}
+      <div class="form-row">
+        <label for="{{ field.id_for_label }}">{{ field.label }}</label>
+        {{ field }}
+        {% for error in field.errors %}<p class="error" role="alert">{{ error }}</p>{% endfor %}
+      </div>
+    {% endfor %}
+    <button type="submit">Log in</button>
+  </form>
+  <p><a href="{% url 'blog:signup' %}">Need an account? Sign up</a></p>
+{% endblock %}

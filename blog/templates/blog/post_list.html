@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% block title %}Home{% endblock %}
+{% block content %}
+  <h1>All posts</h1>
+
+  <form method="get" class="toolbar" role="search">
+    <label for="id_q">Search titles</label>
+    {{ search_form.q }}
+    <label for="date-filter">Filter by date</label>
+    <input
+      type="date" id="date-filter" name="date" value="{{ selected_date }}"
+      hx-get="{% url 'blog:post_list_partial' %}"
+      hx-target="#post-list"
+      hx-trigger="change"
+      hx-include="#id_q"
+    >
+    <button type="submit">Search</button>
+    {% if selected_date or query %}
+      <a href="{% url 'blog:post_list' %}">Clear filters</a>
+    {% endif %}
+  </form>
+
+  <div id="post-list" aria-live="polite">
+    {% include "blog/_post_list_fragment.html" %}
+  </div>
+{% endblock %}

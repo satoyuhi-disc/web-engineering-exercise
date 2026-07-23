@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% block title %}{{ author.username }}'s posts{% endblock %}
+{% block content %}
+  <h1>Posts by {{ author.username }}</h1>
+  {% for post in page_obj %}
+    <article class="post-card">
+      <h2><a href="{% url 'blog:post_detail' post.pk %}">{{ post.title }}</a></h2>
+      <p class="post-meta"><time datetime="{{ post.created_at|date:'Y-m-d' }}">{{ post.created_at|date:"N j, Y" }}</time></p>
+      <p>{{ post.content|truncatewords:30 }}</p>
+    </article>
+  {% empty %}
+    <p>{{ author.username }} hasn't published any posts yet.</p>
+  {% endfor %}
+  <nav class="pagination" aria-label="Post pagination">
+    {% if page_obj.has_previous %}<a href="?page={{ page_obj.previous_page_number }}">&laquo; Previous</a>{% endif %}
+    <span>Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}</span>
+    {% if page_obj.has_next %}<a href="?page={{ page_obj.next_page_number }}">Next &raquo;</a>{% endif %}
+  </nav>
+{% endblock %}

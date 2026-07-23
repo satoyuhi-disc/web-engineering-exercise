@@ -1,0 +1,22 @@
+{% for post in page_obj %}
+  <article class="post-card">
+    <h2><a href="{% url 'blog:post_detail' post.pk %}">{{ post.title }}</a></h2>
+    <p class="post-meta">
+      By <a href="{% url 'blog:author_posts' post.author.username %}">{{ post.author.username }}</a>
+      on <time datetime="{{ post.created_at|date:'Y-m-d' }}">{{ post.created_at|date:"N j, Y" }}</time>
+    </p>
+    <p>{{ post.content|truncatewords:30 }}</p>
+  </article>
+{% empty %}
+  <p>No posts found{% if query %} for "{{ query }}"{% endif %}{% if selected_date %} on {{ selected_date }}{% endif %}.</p>
+{% endfor %}
+
+<nav class="pagination" aria-label="Post pagination">
+  {% if page_obj.has_previous %}
+    <a href="?page={{ page_obj.previous_page_number }}{% if query %}&amp;q={{ query }}{% endif %}{% if selected_date %}&amp;date={{ selected_date }}{% endif %}">&laquo; Previous</a>
+  {% endif %}
+  <span>Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}</span>
+  {% if page_obj.has_next %}
+    <a href="?page={{ page_obj.next_page_number }}{% if query %}&amp;q={{ query }}{% endif %}{% if selected_date %}&amp;date={{ selected_date }}{% endif %}">Next &raquo;</a>
+  {% endif %}
+</nav>
