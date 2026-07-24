@@ -126,6 +126,11 @@ AGENTS.md            コーディングエージェント向けルール
 6. デプロイ後、`python manage.py collectstatic --noinput` と
    `python manage.py migrate` を実行(release phaseまたはShellから)
 
+## CI
+
+`.github/workflows/ci.yml` により、`main` への push / PR ごとに
+ruff・black --check・pytest(coverage付き)を自動実行する。
+
 ## 開発ワークフロー
 
 - Issueでバックログ管理 → `feature/<name>` ブランチで開発
