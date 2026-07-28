@@ -136,3 +136,6 @@ ruff・black --check・pytest(coverage付き)を自動実行する。
 - Issueでバックログ管理 → `feature/<name>` ブランチで開発
 - 機能設計は OpenSpec(`openspec/changes/`)で proposal を作成してから実装
 - コーディングエージェントのルールは [`AGENTS.md`](AGENTS.md) を参照
+
+## Live demo
+https://web-engineering-exercise.onrender.com
