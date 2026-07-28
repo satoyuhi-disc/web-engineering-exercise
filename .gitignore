@@ -29,4 +29,5 @@ htmlcov/
 .DS_Store
 
 # --- OpenSpec / agent working files ---
-.opencode/
+.opencode/session/
+.opencode/cache/
