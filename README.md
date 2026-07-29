@@ -3,6 +3,46 @@
 Web Engineering 課題用の Django プロジェクト。ユーザーがブログ投稿を
 作成・閲覧できる、シンプルな共有ブログサイト。
 
+## English Summary
+
+A Django-based blog platform built for a Web Engineering course project.
+Users can browse and create blog posts in a shared blog space.
+
+**Key features**
+- List all posts, newest first, with pagination
+- Browse posts by author (author list → author's posts)
+- Filter posts by date via a calendar picker
+- Search posts by title (partial match)
+- User registration and login
+- Logged-in users can create and publish posts
+- Search/date filtering updates the post list in place via HTMX
+  (no full page reload)
+
+**Tech stack**
+- Backend: Django 6 (Python 3.12), managed with [uv](https://docs.astral.sh/uv/)
+- Frontend: Server-rendered HTML + CSS (responsive) + HTMX for partial
+  page updates
+- Testing: pytest / pytest-django, coverage.py (~89% coverage)
+- Linting/formatting: ruff, black
+- CI: GitHub Actions runs lint, format check, and tests on every push/PR
+- Deployment: gunicorn + whitenoise, deployed on
+  [Render](https://render.com) — live at
+  https://web-engineering-exercise.onrender.com
+
+**Quick start**
+```bash
+git clone https://github.com/satoyuhi-disc/web-engineering-exercise.git
+cd web-engineering-exercise
+uv sync --dev
+cp .env.example .env
+uv run python manage.py migrate
+uv run python manage.py runserver
+```
+
+Full details (setup, project structure, API/URL list, deployment
+instructions) are in Japanese in the sections below.
+
+
 ## 目次
 
 - [プロジェクト概要](#プロジェクト概要)
